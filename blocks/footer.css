@@ -1,0 +1,23 @@
+.footer {
+  font-family: "Inter", Arial, sans-serif;
+  flex-shrink: 0;
+  padding: 35px 26px 35px;
+}
+
+.footer__copyright {
+  font-size: 18px;
+  line-height: 22px;
+  color: #3d3d3d;
+  margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    padding: 30px 0 36px;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
