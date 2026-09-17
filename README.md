@@ -65,4 +65,4 @@ Entre as funcionalidades planejadas estão:
 
 ![Página inicial da Caixa de Morfeu](./public/screenshots/home.png)
 ![Página de Pesquisa](./public/screenshots/simbolos.png)
-![Página inicial mobile](./public/screenshots/simbolos.png)
+![Página inicial mobile](./public/screenshots/home_mobile.png)
