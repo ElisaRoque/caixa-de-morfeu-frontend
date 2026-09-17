@@ -1,16 +1,68 @@
-# React + Vite
+# A Caixa de Morfeu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma ferramenta para explorar o simbolismo dos sonhos.
 
-Currently, two official plugins are available:
+**A Caixa de Morfeu** permite pesquisar símbolos encontrados durante os sonhos e consultar seus significados a partir de diferentes perspectivas simbólicas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O projeto está sendo desenvolvido como trabalho final de um curso de desenvolvimento web full-stack, utilizando React no front-end e, posteriormente, uma API própria no back-end.
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Atualmente, a aplicação permite:
 
-## Expanding the ESLint configuration
+- pesquisar um símbolo relacionado a um sonho
+- consultar informações simbólicas sobre o termo pesquisado
+- utilizar a aplicação em diferentes tamanhos de tela
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tecnologias
+
+### Front-end
+
+- React
+
+- Vite
+- React Router
+- JavaScript
+- HTML5
+- CSS3
+
+### APIs
+
+A aplicação utiliza:
+
+- **Asterwise API** para consulta de símbolos e seus significados;
+- **MyMemory API** para tradução dos termos e conteúdos retornados pela API para português.
+
+As requisições à Asterwise são realizadas através de um proxy configurado no Vite.
+
+## Como executar o projeto
+
+### Pré-requisitos
+
+Para executar o projeto localmente, é necessário ter instalado:
+
+- Node.js
+- npm
+- Git
+
+### Instalação
+
+npm install
+npm run dev
+
+## Próximos passos
+
+O projeto terá uma segunda etapa de desenvolvimento, com a criação do back-end e integração de funcionalidades para usuários autenticados.
+
+Entre as funcionalidades planejadas estão:
+
+- cadastro e login de usuários;
+- armazenamento de símbolos pesquisados;
+- registro da data do sonho;
+- área **Meus Sonhos**.
+
+## Telas
+
+![Página inicial da Caixa de Morfeu](./public/screenshots/home.png)
+![Página de Pesquisa](./public/screenshots/simbolos.png)
+![Página inicial mobile](./public/screenshots/simbolos.png)
