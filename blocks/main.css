@@ -1,0 +1,127 @@
+.main {
+  font-family: "Inter", Arial, sans-serif;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main__title {
+  position: relative;
+
+  margin: 0 0 45px;
+  font-size: 60px;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+
+  text-shadow: 0 2px 20px rgba(11, 16, 32, 0.45);
+}
+
+.main__error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto 0;
+  color: #ffffff;
+  font-size: 16px;
+  background: #ff0000b2;
+  line-height: 1.6;
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 30px;
+  box-sizing: border-box;
+}
+
+.main__error-icon {
+  flex-shrink: 0;
+  color: #e7e2d5;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.main__error-text {
+  flex: 1;
+  margin: 0;
+  color: #e7e2d5;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.main__error-close {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #e7e2d5;
+  font-family: inherit;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.main__error-close:hover {
+  opacity: 0.7;
+}
+
+.main__notification {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto 0;
+  padding: 18px 20px;
+  box-sizing: border-box;
+  border-radius: 30px;
+  background-color: #000000;
+}
+
+.main__notification-icon {
+  flex-shrink: 0;
+  color: #e7e2d5;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.main__notification-text {
+  flex: 1;
+  margin: 0;
+  color: #e7e2d5;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.main__notification-close {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #e7e2d5;
+  font-family: inherit;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.main__notification-close:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 600px) {
+  .main__title {
+    font-size: 36px;
+    line-height: 1.15;
+    margin-bottom: 35px;
+  }
+
+  .main__error,
+  .main__notification {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

@@ -1,0 +1,38 @@
+.not-found {
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.not-found__title {
+  margin: 0 0 16px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.not-found__text {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 600px) {
+  .not-found {
+    padding: 30px 20px;
+  }
+
+  .not-found__title {
+    font-size: 36px;
+  }
+
+  .not-found__text {
+    font-size: 18px;
+  }
+}

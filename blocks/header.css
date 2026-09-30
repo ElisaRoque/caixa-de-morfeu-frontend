@@ -1,0 +1,148 @@
+.header {
+  position: relative;
+  font-family: "Inter", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+  height: 64px;
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo-text {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.header__logo-image {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.header__nav {
+  display: flex;
+  align-self: stretch;
+  gap: 20px;
+}
+
+.header__link {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.header__link--active {
+  border-bottom-color: #c8c0d2;
+}
+
+.header__button {
+  padding: 12px 32px;
+  cursor: pointer;
+  border-radius: 100px;
+  color: #c8c0d2;
+  background: #0b1020;
+  border: none;
+  box-shadow: 0 0 15px rgba(231, 226, 213, 0.18);
+}
+.header__button:hover {
+  background: #c8c0d2;
+  color: #0b1020;
+  box-shadow:
+    0 0 18px rgba(231, 226, 213, 0.3),
+    0 0 40px rgba(138, 129, 152, 0.2);
+}
+
+.header__menu-button {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 10px 0;
+  }
+
+  .header__logo-image {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    margin-right: 6px;
+  }
+
+  .header__logo-text {
+    font-size: 14px;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__nav--open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 20px 0;
+    background: #0b1020;
+    z-index: 10;
+  }
+
+  .header__link {
+    padding: 16px;
+  }
+
+  .header__button {
+    display: none;
+  }
+
+  .header__menu-button {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 28px;
+    height: 22px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .header__menu-button span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #c8c0d2;
+
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .header__menu-button--open span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+  }
+
+  .header__menu-button--open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header__menu-button--open span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+}
