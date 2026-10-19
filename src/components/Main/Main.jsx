@@ -23,43 +23,58 @@ function Main() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    const originalSymbol = symbol.trim();
+
+    if (!originalSymbol) {
+      setError("Digite um símbolo para pesquisar.");
+      setNotFound(false);
+      return;
+    }
+
     setError("");
     setNotFound(false);
     setIsLoading(true);
 
-    translateText(cleanSymbol(symbol), "pt", "en")
-      .then((data) => {
-        const translatedSymbol = cleanSymbol(data.responseData.translatedText);
+    translateText(cleanSymbol(originalSymbol), "pt", "en")
+      .then((translationData) => {
+        const translatedSymbol =
+          translationData?.responseData?.translatedText?.trim();
 
+        if (!translatedSymbol) {
+          throw new Error("TRANSLATION_ERROR");
+        }
+
+        console.log("SÍMBOLO ORIGINAL:", originalSymbol);
         console.log("SÍMBOLO TRADUZIDO:", translatedSymbol);
 
-        return getDreamSymbol(translatedSymbol);
+        return getDreamSymbol(cleanSymbol(translatedSymbol));
       })
       .then((data) => {
         console.log("RESPOSTA DA ASTERWISE:", data);
 
-        if (!data.success || !data.data) {
+        if (!data?.success || !data?.data) {
           throw new Error("NOT_FOUND");
         }
 
         const dream = data.data;
 
         return Promise.all([
-          translateText(dream.name, "en", "pt"),
-          translateText(dream.emotional_tone, "en", "pt"),
-          translateText(dream.jungian_archetype, "en", "pt"),
-          translateText(dream.jungian_meaning, "en", "pt"),
-          translateText(dream.themes.join(", "), "en", "pt"),
-          translateText(dream.vedic_meaning, "en", "pt"),
+          translateText(dream.emotional_tone || "", "en", "pt"),
+          translateText(dream.jungian_archetype || "", "en", "pt"),
+          translateText(dream.jungian_meaning || "", "en", "pt"),
+          translateText((dream.themes || []).join(", "), "en", "pt"),
+          translateText(dream.vedic_meaning || "", "en", "pt"),
         ]).then((translations) => {
           const translatedDream = {
             ...dream,
-            name: translations[0].responseData.translatedText,
-            emotional_tone: translations[1].responseData.translatedText,
-            jungian_archetype: translations[2].responseData.translatedText,
-            jungian_meaning: translations[3].responseData.translatedText,
-            themes: translations[4].responseData.translatedText,
-            vedic_meaning: translations[5].responseData.translatedText,
+            name:
+              originalSymbol.charAt(0).toUpperCase() + originalSymbol.slice(1),
+            emotional_tone: translations[0].responseData.translatedText,
+            jungian_archetype: translations[1].responseData.translatedText,
+            jungian_meaning: translations[2].responseData.translatedText,
+            themes: translations[3].responseData.translatedText,
+            vedic_meaning: translations[4].responseData.translatedText,
           };
 
           localStorage.setItem("dreamSymbol", JSON.stringify(translatedDream));
@@ -72,13 +87,20 @@ function Main() {
       .catch((error) => {
         console.error("ERRO NA PESQUISA:", error);
 
-        if (error.status === 404) {
+        if (error.message === "NOT_FOUND" || error.status === 404) {
           setNotFound(true);
           return;
         }
 
+        if (error.message === "TRANSLATION_ERROR") {
+          setError(
+            "Não conseguimos traduzir o símbolo. Tente novamente mais tarde.",
+          );
+          return;
+        }
+
         setError(
-          "Desculpe, algo deu errado durante a solicitação. Pode haver um problema de conexão ou o servidor pode estar inativo. Por favor, tente novamente mais tarde.",
+          "Desculpe, ocorreu um erro durante a pesquisa. Verifique sua conexão e tente novamente.",
         );
       })
       .finally(() => {
@@ -89,6 +111,7 @@ function Main() {
   return (
     <>
       {isLoading && <Preloader />}
+
       <main className="main">
         <h1 className="main__title">
           O que você encontrou
@@ -106,7 +129,7 @@ function Main() {
             onChange={(event) => setSymbol(event.target.value)}
           />
 
-          <button className="search__button" type="submit">
+          <button className="search__button" type="submit" disabled={isLoading}>
             Pesquisar
           </button>
         </form>

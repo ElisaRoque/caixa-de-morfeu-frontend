@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../../../blocks/symbol.css";
+import "../../../blocks/dream-form.css";
+import DreamForm from "../DreamForm/DreamForm";
 
 function Symbol() {
   const location = useLocation();
+  const navigate = useNavigate();
   const dream =
     location.state || JSON.parse(localStorage.getItem("dreamSymbol"));
 
   const [visibleCards, setVisibleCards] = useState(3);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const cards = [
     {
@@ -53,6 +57,24 @@ function Symbol() {
         >
           Mostrar mais
         </button>
+      )}
+      <button
+        className="symbol__save"
+        type="button"
+        onClick={() => setIsFormOpen(true)}
+      >
+        Registrar sonho
+      </button>
+
+      {isFormOpen && (
+        <div className="dream-form__overlay">
+          <DreamForm
+            symbol={dream}
+            onDreamCreated={() => {}}
+            onClose={() => setIsFormOpen(false)}
+            onGoToDreams={() => navigate("/meus-sonhos")}
+          />
+        </div>
       )}
     </main>
   );

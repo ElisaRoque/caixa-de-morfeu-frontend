@@ -74,6 +74,32 @@
     0 0 40px rgba(138, 129, 152, 0.2);
 }
 
+.symbol__save {
+  display: block;
+  margin: 50px auto 0;
+  padding: 15px 34px;
+  border: 1px solid rgba(200, 192, 210, 0.3);
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 16px;
+  color: #e7e2d5;
+  background: #0b1020;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(231, 226, 213, 0.12);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.symbol__save:hover {
+  background: #c8c0d2;
+  color: #0b1020;
+  box-shadow:
+    0 0 18px rgba(231, 226, 213, 0.3),
+    0 0 40px rgba(138, 129, 152, 0.2);
+}
+
 @media screen and (max-width: 900px) {
   .symbol__cards {
     grid-template-columns: repeat(2, 1fr);

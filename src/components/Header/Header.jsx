@@ -1,8 +1,11 @@
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import logo from "/cmlogo.png";
-function Header() {
+
+function Header({ currentUser, onLogout, onOpenAuthModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleMenuToggle() {
     setIsMenuOpen(!isMenuOpen);
@@ -11,6 +14,17 @@ function Header() {
   function handleLinkClick() {
     setIsMenuOpen(false);
   }
+
+  function handleLoginClick() {
+    setIsMenuOpen(false);
+    onOpenAuthModal("login");
+  }
+
+  function handleLogoutClick() {
+    setIsMenuOpen(false);
+    onLogout();
+  }
+
   return (
     <header className="header page__section">
       <div className="header__logo">
@@ -42,9 +56,41 @@ function Header() {
         >
           Símbolos
         </NavLink>
+
+        {currentUser && (
+          <NavLink
+            to="/meus-sonhos"
+            className={({ isActive }) =>
+              `header__link ${isActive ? "header__link--active" : ""}`
+            }
+            onClick={handleLinkClick}
+          >
+            Meus Sonhos
+          </NavLink>
+        )}
       </nav>
 
-      <button className="header__button">Entrar</button>
+      {currentUser ? (
+        <div className="header__user">
+          <span className="header__user-name">Olá, {currentUser.name}</span>
+
+          <button
+            className="header__button"
+            type="button"
+            onClick={handleLogoutClick}
+          >
+            Sair
+          </button>
+        </div>
+      ) : (
+        <button
+          className="header__button"
+          type="button"
+          onClick={handleLoginClick}
+        >
+          Entrar
+        </button>
+      )}
 
       <button
         className={`header__menu-button ${
