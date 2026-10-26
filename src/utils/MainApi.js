@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 const request = (endpoint, options = {}) => {
   return fetch(`${BASE_URL}${endpoint}`, {
@@ -51,6 +51,16 @@ export const getDreams = (token) => {
 export const createDream = (data, token) => {
   return request("/dreams", {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+};
+
+export const updateDream = (dreamId, data, token) => {
+  return request(`/dreams/${dreamId}`, {
+    method: "PATCH",
     headers: {
       Authorization: `Bearer ${token}`,
     },

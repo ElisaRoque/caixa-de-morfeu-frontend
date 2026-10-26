@@ -1,11 +1,9 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logo from "/cmlogo.png";
 
 function Header({ currentUser, onLogout, onOpenAuthModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navigate = useNavigate();
 
   function handleMenuToggle() {
     setIsMenuOpen(!isMenuOpen);

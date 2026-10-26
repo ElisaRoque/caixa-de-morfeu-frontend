@@ -18,7 +18,9 @@ import { registerUser, loginUser, getCurrentUser } from "./utils/MainApi";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() =>
+    Boolean(localStorage.getItem("token")),
+  );
   const [authModal, setAuthModal] = useState(null);
 
   const navigate = useNavigate();
@@ -27,7 +29,6 @@ function App() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      setIsLoading(false);
       return;
     }
 
@@ -103,7 +104,15 @@ function App() {
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/simbolos" element={<Main />} />
-          <Route path="/simbolo" element={<Symbol />} />
+          <Route
+            path="/simbolo"
+            element={
+              <Symbol
+                currentUser={currentUser}
+                onOpenAuthModal={openAuthModal}
+              />
+            }
+          />
           <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
           <Route
             path="/signup"

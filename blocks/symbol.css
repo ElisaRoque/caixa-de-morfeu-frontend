@@ -77,7 +77,7 @@
 .symbol__save {
   display: block;
   margin: 50px auto 0;
-  padding: 15px 34px;
+  padding: 14px 65px;
   border: 1px solid rgba(200, 192, 210, 0.3);
   border-radius: 30px;
   font-family: inherit;
@@ -100,9 +100,105 @@
     0 0 40px rgba(138, 129, 152, 0.2);
 }
 
-@media screen and (max-width: 900px) {
-  .symbol__cards {
-    grid-template-columns: repeat(2, 1fr);
+.symbol__cta {
+  width: 100%;
+  max-width: 680px;
+  box-sizing: border-box;
+  margin: 70px auto 0;
+  padding: 32px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(
+    to bottom,
+    #142b35 40%,
+    #0b1020 80%,
+    #000000 100%
+  );
+  color: #fff;
+  text-align: center;
+}
+
+.symbol__cta-title {
+  margin: 0 0 12px;
+  color: #e5edf2;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.symbol__cta-text {
+  max-width: 500px;
+  margin: 0 auto 24px;
+  color: #b8c7d0;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.symbol__cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.symbol__cta-button {
+  min-width: 200px;
+  padding: 12px 32px;
+  cursor: pointer;
+  border-radius: 100px;
+  color: #c8c0d2;
+  text-decoration: none;
+  background: #0b1020;
+  border: none;
+  box-shadow: 0 0 15px rgba(231, 226, 213, 0.18);
+}
+
+.symbol__cta-button:hover {
+  background: #c8c0d2;
+  color: #0b1020;
+  box-shadow:
+    0 0 18px rgba(231, 226, 213, 0.3),
+    0 0 40px rgba(138, 129, 152, 0.2);
+}
+
+.symbol__cta-login {
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: #c1d4df;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.symbol__cta-login:hover {
+  color: #ffffff;
+}
+
+.symbol__cta-button:focus-visible,
+.symbol__cta-login:focus-visible {
+  outline: 2px solid #d0e1e9;
+  outline-offset: 4px;
+}
+
+@media screen and (max-width: 480px) {
+  .symbol__cta {
+    margin-top: 36px;
+    padding: 24px 18px;
+  }
+
+  .symbol__cta-title {
+    font-size: 21px;
+  }
+
+  .symbol__cta-text {
+    font-size: 14px;
+  }
+
+  .symbol__cta-button {
+    width: 100%;
+    max-width: 280px;
   }
 }
 
@@ -122,5 +218,11 @@
 
   .symbol__card {
     min-height: auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .symbol__cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

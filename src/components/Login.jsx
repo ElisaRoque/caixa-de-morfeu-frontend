@@ -24,9 +24,6 @@ const Login = ({ handleLogin, onSwitchAuthModal }) => {
   const [serverError, setServerError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const isFormValid =
-    !validateEmail(data.email) && data.password.trim().length > 0;
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 

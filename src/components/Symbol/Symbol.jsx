@@ -4,7 +4,7 @@ import "../../../blocks/symbol.css";
 import "../../../blocks/dream-form.css";
 import DreamForm from "../DreamForm/DreamForm";
 
-function Symbol() {
+function Symbol({ currentUser, onOpenAuthModal }) {
   const location = useLocation();
   const navigate = useNavigate();
   const dream =
@@ -58,13 +58,43 @@ function Symbol() {
           Mostrar mais
         </button>
       )}
-      <button
-        className="symbol__save"
-        type="button"
-        onClick={() => setIsFormOpen(true)}
-      >
-        Registrar sonho
-      </button>
+
+      {currentUser ? (
+        <button
+          className="symbol__save"
+          type="button"
+          onClick={() => setIsFormOpen(true)}
+        >
+          Registrar sonho
+        </button>
+      ) : (
+        <section className="symbol__cta">
+          <h2 className="symbol__cta-title">Seu sonho merece ser lembrado.</h2>
+
+          <p className="symbol__cta-text">
+            Registre seus sonhos, acompanhe os símbolos que se repetem e
+            construa seu próprio diário.
+          </p>
+
+          <div className="symbol__cta-actions">
+            <button
+              className="symbol__cta-button"
+              type="button"
+              onClick={() => onOpenAuthModal("register")}
+            >
+              Criar minha conta
+            </button>
+
+            <button
+              className="symbol__cta-login"
+              type="button"
+              onClick={() => onOpenAuthModal("login")}
+            >
+              Já tem uma conta? Entre aqui.
+            </button>
+          </div>
+        </section>
+      )}
 
       {isFormOpen && (
         <div className="dream-form__overlay">
