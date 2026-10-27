@@ -45,6 +45,16 @@
   border-bottom-color: #c8c0d2;
 }
 
+.header__user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header__user-name {
+  font-size: 14px;
+}
+
 .header__button {
   padding: 12px 32px;
   cursor: pointer;
