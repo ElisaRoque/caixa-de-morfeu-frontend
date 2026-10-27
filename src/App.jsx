@@ -63,7 +63,6 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         closeAuthModal();
-        navigate("/");
       })
       .catch((err) => {
         localStorage.removeItem("token");
