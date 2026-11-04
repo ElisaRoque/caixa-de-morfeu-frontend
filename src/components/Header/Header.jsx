@@ -1,7 +1,8 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import logo from "/cmlogo.png";
-function Header() {
+
+function Header({ currentUser, onLogout, onOpenAuthModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function handleMenuToggle() {
@@ -11,16 +12,28 @@ function Header() {
   function handleLinkClick() {
     setIsMenuOpen(false);
   }
+
+  function handleLoginClick() {
+    setIsMenuOpen(false);
+    onOpenAuthModal("login");
+  }
+
+  function handleLogoutClick() {
+    setIsMenuOpen(false);
+    onLogout();
+  }
+
   return (
     <header className="header page__section">
-      <div className="header__logo">
-        <img
-          alt="Logotipo A Caixa de Morfeu"
-          className="header__logo-image"
-          src={logo}
-        />
+      <NavLink
+        to="/"
+        className="header__logo"
+        aria-label="A Caixa de Morfeu - Página inicial"
+        onClick={handleLinkClick}
+      >
+        <img alt="" className="header__logo-image" src={logo} />
         <span className="header__logo-text">A Caixa de Morfeu</span>
-      </div>
+      </NavLink>
 
       <nav className={`header__nav ${isMenuOpen ? "header__nav--open" : ""}`}>
         <NavLink
@@ -42,9 +55,59 @@ function Header() {
         >
           Símbolos
         </NavLink>
+
+        {currentUser && (
+          <NavLink
+            to="/meus-sonhos"
+            className={({ isActive }) =>
+              `header__link ${isActive ? "header__link--active" : ""}`
+            }
+            onClick={handleLinkClick}
+          >
+            Meus Sonhos
+          </NavLink>
+        )}
+
+        {currentUser ? (
+          <button
+            className="header__button header__button--mobile"
+            type="button"
+            onClick={handleLogoutClick}
+          >
+            Sair
+          </button>
+        ) : (
+          <button
+            className="header__button header__button--mobile"
+            type="button"
+            onClick={handleLoginClick}
+          >
+            Entrar
+          </button>
+        )}
       </nav>
 
-      <button className="header__button">Entrar</button>
+      {currentUser ? (
+        <div className="header__user">
+          <span className="header__user-name">Olá, {currentUser.name}</span>
+
+          <button
+            className="header__button"
+            type="button"
+            onClick={handleLogoutClick}
+          >
+            Sair
+          </button>
+        </div>
+      ) : (
+        <button
+          className="header__button"
+          type="button"
+          onClick={handleLoginClick}
+        >
+          Entrar
+        </button>
+      )}
 
       <button
         className={`header__menu-button ${
