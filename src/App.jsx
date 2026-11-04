@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
@@ -63,6 +63,10 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         closeAuthModal();
+
+        if (window.location.pathname === "/signin") {
+          navigate("/", { replace: true });
+        }
       })
       .catch((err) => {
         localStorage.removeItem("token");
@@ -112,7 +116,16 @@ function App() {
               />
             }
           />
-          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
+          <Route
+            path="/signin"
+            element={
+              currentUser ? (
+                <Navigate to="/" replace />
+              ) : (
+                <Login handleLogin={handleLogin} />
+              )
+            }
+          />
           <Route
             path="/signup"
             element={<Register onRegister={handleRegister} />}

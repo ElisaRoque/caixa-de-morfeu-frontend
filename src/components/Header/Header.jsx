@@ -25,14 +25,15 @@ function Header({ currentUser, onLogout, onOpenAuthModal }) {
 
   return (
     <header className="header page__section">
-      <div className="header__logo">
-        <img
-          alt="Logotipo A Caixa de Morfeu"
-          className="header__logo-image"
-          src={logo}
-        />
+      <NavLink
+        to="/"
+        className="header__logo"
+        aria-label="A Caixa de Morfeu - Página inicial"
+        onClick={handleLinkClick}
+      >
+        <img alt="" className="header__logo-image" src={logo} />
         <span className="header__logo-text">A Caixa de Morfeu</span>
-      </div>
+      </NavLink>
 
       <nav className={`header__nav ${isMenuOpen ? "header__nav--open" : ""}`}>
         <NavLink
@@ -65,6 +66,24 @@ function Header({ currentUser, onLogout, onOpenAuthModal }) {
           >
             Meus Sonhos
           </NavLink>
+        )}
+
+        {currentUser ? (
+          <button
+            className="header__button header__button--mobile"
+            type="button"
+            onClick={handleLogoutClick}
+          >
+            Sair
+          </button>
+        ) : (
+          <button
+            className="header__button header__button--mobile"
+            type="button"
+            onClick={handleLoginClick}
+          >
+            Entrar
+          </button>
         )}
       </nav>
 
