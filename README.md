@@ -72,4 +72,4 @@ O projeto pode evoluir com novas funcionalidades de exploração simbólica, aco
 ![Página de Pesquisa](./public/screenshots/simbolos.png)
 ![Página inicial mobile](./public/screenshots/home_mobile.png)
 
-🔗 **Acesse a aplicação:** [A Caixa de Morfeu](https://dream.zef.ro)
+🔗 **Acesse a aplicação:** [A Caixa de Morfeu](https://morfeudream.mooo.com)
